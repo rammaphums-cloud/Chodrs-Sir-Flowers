@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flower Name Bouquet</title>
+<style>
+  body { font-family: 'Prompt', sans-serif; text-align: center; background-color: #fff8f8; }
+  .flower { display: inline-block; margin: 10px; }
+  img { width: 70px; border-radius: 8px; }
+  select, input { padding: 8px; margin: 10px; border-radius: 5px; }
+  #bouquet { margin-top: 30px; }
+</style>
+</head>
+<body>
+
+<h1>🌸 สร้างช่อดอกไม้ตามชื่อของคุณ 🌸</h1>
+<p>พิมพ์ชื่อของคุณ (ภาษาอังกฤษ)</p>
+<input id="nameInput" placeholder="เช่น: ANNA">
+<br>
+<label>เลือกกระดาษห่อช่อ:</label>
+<select id="wrapColor">
+  <option value="pink">ชมพู</option>
+  <option value="brown">น้ำตาล</option>
+  <option value="cream">ครีม</option>
+  <option value="black">ดำ</option>
+</select>
+<br>
+<button onclick="createBouquet()">สร้างช่อดอกไม้</button>
+
+<div id="bouquet"></div>
+
+<script>
+const flowers = {
+  A: '🌹', B: '🌻', C: '🌷', D: '🌼', E: '💐', F: '🌺', G: '🌸', H: '🌻', 
+  I: '🌹', J: '🌼', K: '🌷', L: '🌸', M: '🌻', N: '🌹', O: '🌺', P: '🌼',
+  Q: '🌷', R: '💐', S: '🌸', T: '🌺', U: '🌻', V: '🌼', W: '🌹', X: '🌷', 
+  Y: '🌸', Z: '💐'
+};
+
+function createBouquet() {
+  const name = document.getElementById("nameInput").value.toUpperCase();
+  const wrap = document.getElementById("wrapColor").value;
+  let bouquet = "";
+
+  for (let ch of name) {
+    if (flowers[ch]) bouquet += flowers[ch] + " ";
+  }
+
+  document.getElementById("bouquet").innerHTML = `
+    <h3>ช่อดอกไม้ของคุณ</h3>
+    <div style="background-color:${wrap}; padding:20px; border-radius:10px; display:inline-block;">
+      <p style="font-size:30px;">${bouquet}</p>
+      <p>ห่อด้วยกระดาษสี ${wrap}</p>
+    </div>
+  `;
+}
+</script>
+
+</body>
+</html>
